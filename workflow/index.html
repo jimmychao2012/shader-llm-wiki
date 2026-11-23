@@ -1,0 +1,65 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Graph / Loop 工作流程｜Shader Lab</title><style>
+:root{font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{background:radial-gradient(circle at 80% 0%,#224b65,#0e1b35 48%,#071024 95%);color:#eaf5ff;margin:0}header,main,footer{max-width:1050px;margin:auto;padding:20px 24px}header{display:flex;gap:15px;align-items:center;justify-content:space-between;padding-top:35px}header a{color:#82e7df;text-decoration:none}header nav{display:flex;flex-wrap:wrap;gap:16px}h1{font-size:clamp(32px,4.8vw,56px);line-height:1.2;margin:28px 0 10px}h2{font-size:24px;margin:32px 0 12px;color:#9dece5}h3{font-size:19px}p,li,td{line-height:1.9;color:#c4d8e9}a{color:#8de4e4}a:hover{text-decoration:underline}article{background:#122941;border:1px solid #34546b;border-radius:20px;padding:24px 34px;margin:20px 0}blockquote{border-left:3px solid #70d5c9;padding:6px 18px;margin:14px 0;background:#203952}blockquote p{margin:0}pre{overflow:auto;padding:15px;border:1px solid #3c6172;border-radius:10px;background:#081728;color:#e2f4ff}code{background:#203950;border-radius:5px;padding:2px 5px}pre code{padding:0;background:transparent}table{border-collapse:collapse;display:block;overflow-x:auto;width:100%}td,th{border-bottom:1px solid #345169;padding:11px;text-align:left;vertical-align:top}th{color:#98ebdc}ul{padding-left:24px}.badge{font-size:13px;letter-spacing:.12em;color:#77e2d5;font-weight:700}.intro{font-size:18px}.tabs{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}.tabs a{background:#1d3c53;border:1px solid #426477;padding:10px 16px;border-radius:9px;text-decoration:none}.tabs a:hover{background:#2b5367}footer{color:#8cadbe;font-size:13px;padding-bottom:45px}@media(max-width:650px){article{padding:18px}header{display:block}header nav{margin-top:14px}}
+</style></head><body><header><strong>SHADER LAB / PROJECT</strong><nav><a href="../">← 返回首頁</a><a href="../slides/">HTML 教學簡報</a><a href="../wiki/">知識庫</a></nav></header><main><span class="badge">PROJECT DOCUMENTATION</span><h1>Graph / Loop 工作流程</h1><p class="intro">從 Wiki 檢索、證據對照到 HTML 驗證的節點與退回設計。</p><div class="tabs"><a href="#graph">Graph 設計</a></div><article id="graph"><h1>從 Wiki 到教學 HTML 簡報｜Graph 設計</h1>
+<blockquote>
+<p>前提：使用已完成的 6 篇 Wiki 條目，不在簡報階段直接從外部網站自由補充知識。</p>
+</blockquote>
+<p><strong>流程視覺摘要：</strong> 讀取 Wiki → 檢查來源 → 證據對照 → 大綱 → 逐頁撰稿 → 忠實度檢查 → HTML → 網頁驗證 → 報告。未通過的節點退回該階段修正，而不是全部重做。</p>
+<h2>節點輸入／輸出／關卡</h2>
+<table>
+<thead>
+<tr>
+  <th>節點</th>
+  <th>可讀內容</th>
+  <th>輸出</th>
+  <th>驗收、失敗回退</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>來源覆蓋</td>
+  <td><code>wiki/index.md</code>, <code>wiki/topics/*.md</code></td>
+  <td>已選 W01–W06</td>
+  <td>少於五篇來源則停止，不自行補造</td>
+</tr>
+<tr>
+  <td>證據對照</td>
+  <td>Wiki 條目與來源 ID</td>
+  <td><code>slide-sources.csv</code></td>
+  <td>每頁至少一篇 Wiki 依據，沒引用退回對照</td>
+</tr>
+<tr>
+  <td>大綱</td>
+  <td>證據對照</td>
+  <td>11 頁題綱</td>
+  <td>8–12 頁、W01–W06 全涵蓋，否則退回大綱</td>
+</tr>
+<tr>
+  <td>逐頁撰稿</td>
+  <td>題綱與對應 Wiki</td>
+  <td>逐頁文字</td>
+  <td>避免擅加無據數字，忠實度不足只修錯頁</td>
+</tr>
+<tr>
+  <td>HTML 渲染</td>
+  <td>審過的逐頁稿</td>
+  <td><code>slides/index.html</code></td>
+  <td>不任意擴充技術敘述；檢查 RWD、操作與引用</td>
+</tr>
+<tr>
+  <td>最終檢查</td>
+  <td>HTML + Wiki</td>
+  <td><code>reports/validation.md</code></td>
+  <td>靜態程式測試 + 真正瀏覽器的互動驗證</td>
+</tr>
+</tbody>
+</table>
+<h2>小 Loop 與停止條件</h2>
+<ul>
+<li><strong>引用小圈</strong>：撰稿 → 確認 Wiki ID → 只修無依據的段落，最多 3 輪。</li>
+<li><strong>排版小圈</strong>：渲染 → 截圖／檢查 → 只修改排版或控制項，最多 3 輪。</li>
+<li><strong>停止</strong>：來源不足、來源矛盾無法釐清或修正滿三輪仍失敗，應記錄 blocker，不捏造完成。</li>
+<li><strong>人工確認點</strong>：進入 HTML 前確認大綱；交件前人工抽看兩張投影片的概念說明。</li>
+</ul>
+<p>設計理由：講義強調「錯在哪一關，就退回哪一關」，避免把字太多或錯連結這類局部問題變成整份重新生成。</p>
+<p><a href="https://github.com/jimmychao2012/shader-llm-wiki/blob/main/workflow/graph.md">檢視原始 Markdown 紀錄</a></p></article></main><footer>Shader LLM Wiki · 內容保留在 GitHub Markdown 檔案，這裡提供可直接瀏覽的 HTML 版本。</footer></body></html>
