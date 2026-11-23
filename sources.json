@@ -1,0 +1,62 @@
+[
+  {
+    "id": "S01",
+    "title": "LearnOpenGL — Hello Triangle",
+    "url": "https://learnopengl.com/Getting-started/Hello-Triangle",
+    "topic_slug": "graphics-pipeline",
+    "verified_on": "2026-11-23",
+    "verification": "web content accessed and read",
+    "section": "Getting-started/Hello-Triangle：graphics pipeline 與 shader stages",
+    "type": "public technical tutorial"
+  },
+  {
+    "id": "S02",
+    "title": "LearnOpenGL — Shaders",
+    "url": "https://learnopengl.com/Getting-started/Shaders",
+    "topic_slug": "glsl-basics",
+    "verified_on": "2026-11-23",
+    "verification": "web content accessed and read",
+    "section": "Getting-started/Shaders：GLSL、Types、Ins and outs、Uniforms",
+    "type": "public technical tutorial"
+  },
+  {
+    "id": "S03",
+    "title": "WebGL Fundamentals — WebGL Shaders and GLSL",
+    "url": "https://webglfundamentals.org/webgl/lessons/webgl-shaders-and-glsl.html",
+    "topic_slug": "shader-stages",
+    "verified_on": "2026-11-23",
+    "verification": "web content accessed and read",
+    "section": "WebGL Shaders and GLSL：Vertex Shader、Fragment Shader、Attributes、Uniforms",
+    "type": "public technical tutorial"
+  },
+  {
+    "id": "S04",
+    "title": "LearnOpenGL — Transformations",
+    "url": "https://learnopengl.com/Getting-started/Transformations",
+    "topic_slug": "transformations",
+    "verified_on": "2026-11-23",
+    "verification": "web content accessed and read",
+    "section": "Getting-started/Transformations：Matrices、Matrix multiplication、In practice",
+    "type": "public technical tutorial"
+  },
+  {
+    "id": "S05",
+    "title": "The Book of Shaders — Uniforms",
+    "url": "https://thebookofshaders.com/03/",
+    "topic_slug": "uniforms",
+    "verified_on": "2026-11-23",
+    "verification": "web content accessed and read",
+    "section": "Chapter 03：Uniforms、u_time、u_resolution、u_mouse",
+    "type": "public technical tutorial"
+  },
+  {
+    "id": "S06",
+    "title": "The Book of Shaders — Colors",
+    "url": "https://thebookofshaders.com/06/",
+    "topic_slug": "colors-and-mix",
+    "verified_on": "2026-11-23",
+    "verification": "web content accessed and read",
+    "section": "Chapter 06：Colors、Mixing color、Playing with gradients",
+    "type": "public technical tutorial"
+  }
+]
