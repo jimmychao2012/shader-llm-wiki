@@ -1,0 +1,49 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>實際檢查紀錄與反思｜Shader Lab</title><style>
+:root{font-family:system-ui,-apple-system,"Noto Sans TC",sans-serif;color-scheme:dark}*{box-sizing:border-box}html{scroll-behavior:smooth}body{background:radial-gradient(circle at 80% 0%,#224b65,#0e1b35 48%,#071024 95%);color:#eaf5ff;margin:0}header,main,footer{max-width:1050px;margin:auto;padding:20px 24px}header{display:flex;gap:15px;align-items:center;justify-content:space-between;padding-top:35px}header a{color:#82e7df;text-decoration:none}header nav{display:flex;flex-wrap:wrap;gap:16px}h1{font-size:clamp(32px,4.8vw,56px);line-height:1.2;margin:28px 0 10px}h2{font-size:24px;margin:32px 0 12px;color:#9dece5}h3{font-size:19px}p,li,td{line-height:1.9;color:#c4d8e9}a{color:#8de4e4}a:hover{text-decoration:underline}article{background:#122941;border:1px solid #34546b;border-radius:20px;padding:24px 34px;margin:20px 0}blockquote{border-left:3px solid #70d5c9;padding:6px 18px;margin:14px 0;background:#203952}blockquote p{margin:0}pre{overflow:auto;padding:15px;border:1px solid #3c6172;border-radius:10px;background:#081728;color:#e2f4ff}code{background:#203950;border-radius:5px;padding:2px 5px}pre code{padding:0;background:transparent}table{border-collapse:collapse;display:block;overflow-x:auto;width:100%}td,th{border-bottom:1px solid #345169;padding:11px;text-align:left;vertical-align:top}th{color:#98ebdc}ul{padding-left:24px}.badge{font-size:13px;letter-spacing:.12em;color:#77e2d5;font-weight:700}.intro{font-size:18px}.tabs{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0}.tabs a{background:#1d3c53;border:1px solid #426477;padding:10px 16px;border-radius:9px;text-decoration:none}.tabs a:hover{background:#2b5367}footer{color:#8cadbe;font-size:13px;padding-bottom:45px}@media(max-width:650px){article{padding:18px}header{display:block}header nav{margin-top:14px}}
+</style></head><body><header><strong>SHADER LAB / PROJECT</strong><nav><a href="../">← 返回首頁</a><a href="../slides/">HTML 教學簡報</a><a href="../wiki/">知識庫</a></nav></header><main><span class="badge">PROJECT DOCUMENTATION</span><h1>實際檢查紀錄與反思</h1><p class="intro">紀錄實際執行的檢查、修正、測試限制與流程調整。</p><div class="tabs"><a href="#validation">檢查報告</a><a href="#reflection">實作反思</a></div><article id="validation"><h1>Shader Wiki → HTML 教學簡報｜實際檢查紀錄</h1>
+<ul>
+<li>日期：2026-11-23</li>
+<li>對象：<code>slides/index.html</code>、<code>wiki/topics/*.md</code>、<code>workflow/slide-sources.csv</code></li>
+<li>工具：Python + BeautifulSoup 靜態檢查、Playwright 驅動 Chromium 瀏覽器（以 set_content 載入 HTML，因執行環境阻擋本機 URL 導航）</li>
+</ul>
+<h2>第一次檢查：Wiki 對照風險</h2>
+<p>製作前檢查既有舊版簡報草稿，發現舊版以來源 <code>S01–S06</code> 標記，而非明確標註新完成 Wiki 的 <code>W01–W06</code>，且主題來源分配與當前 Wiki 登錄表不同。<strong>處理</strong>：依現有 Wiki 重建簡報、逐頁使用 <code>W</code> ID，加入指向 <code>wiki/topics/</code> 的連結並建立 CSV 對照表；舊版草稿沒有覆蓋正式 Wiki。</p>
+<h2>第二次檢查：程式與瀏覽器</h2>
+<ul>
+<li>Wiki 來源：6 篇；涵蓋 W01–W06。</li>
+<li>HTML 頁數：11；每頁都有 Wiki ID 和能找到的相對路徑。</li>
+<li>逐頁來源對照：11 筆。</li>
+<li>瀏覽器測試結果：<ul>
+<li>desktop 1366px：上一頁/下一頁及鍵盤導覽到 ['1', '2', '3']；滑桿 t=1 為 RGB (220, 79, 185)；水平寬度 1366px；JS 例外 0 個。</li>
+<li>mobile 390px：上一頁/下一頁及鍵盤導覽到 ['1', '2', '3']；滑桿 t=1 為 RGB (220, 79, 185)；水平寬度 390px；JS 例外 0 個。</li>
+</ul>
+</li>
+</ul>
+<p>補充：<code>python scripts/lint_wiki.py</code>、<code>python scripts/lint_slides.py</code> 均回報 PASS (0 errors)。</p>
+<h2>最終結果</h2>
+<p><strong>PASS</strong>。問題數：0。</p>
+<ul>
+<li>沒有發現靜態連結、頁數、導覽、互動或水平溢出問題。</li>
+</ul>
+<h2>限制與待人工複核</h2>
+<ul>
+<li>沒有執行完整 GLSL shader 編譯；程式碼是教育用片段。</li>
+<li>瀏覽器驗證不等於 GPU 執行驗證。</li>
+<li>技術敘述依既有 Wiki；尚未由外部領域專家進行獨立逐項審查。</li>
+<li>請上傳 GitHub Pages 後再檢查部署網址，因為本次是以瀏覽器載入 HTML 字串驗證樣式與 JavaScript，並非 GitHub Pages 網址的線上驗證。</li>
+</ul>
+<p><a href="https://github.com/jimmychao2012/shader-llm-wiki/blob/main/reports/validation.md">檢視原始 Markdown 紀錄</a></p></article><article id="reflection"><h1>實作反思：把錯誤檢查往前移</h1>
+<h2>1. 哪個節點最容易出錯？</h2>
+<p>這次最明顯的風險是 <strong>逐頁撰稿／來源對照</strong>。原有的舊版簡報草稿直接標 <code>S</code> 來源編號，沒有清楚連到新完成的 Wiki <code>W01–W06</code>，容易讓人看不出簡報真的是根據 Wiki 產生。此外，不同版本 OpenGL 與 WebGL 的語法容易被混用。</p>
+<h2>2. 把檢查往前移到哪裡？</h2>
+<p>從「HTML 做完才找來源」改為在<strong>逐頁撰稿前先建立證據對照表</strong> (<code>workflow/slide-sources.csv</code>)。每張投影片先分配 Wiki ID，渲染時只引用這些 Wiki 條目，最後再由靜態程式確認連結都存在。</p>
+<h2>3. 有修改 workflow／graph 嗎？</h2>
+<p><strong>有。</strong> 增加「證據對照 → 覆蓋率檢查」兩個關卡，失敗就退回來源對照或只修改那張投影片，而不是全部重新生成。並且把 HTML 互動示範明確標記為 JavaScript 模擬，避免誤稱為真實 Shader 編譯成果。</p>
+<h2>4. 本次可提出的實際證據</h2>
+<ul>
+<li>Wiki 6 篇來源和 6 篇條目；11 張 HTML 教學投影片；逐頁 CSV。</li>
+<li><code>reports/validation.md</code> 中記錄實際靜態與瀏覽器檢查。</li>
+<li><code>reports/desktop-slide01.png</code>、<code>reports/mobile-slide09.png</code> 等瀏覽器截圖。</li>
+</ul>
+<p>目前的驗證可證明文件互連與網頁操作正常，但不能替代獨立的技術專家審查。</p>
+<p><a href="https://github.com/jimmychao2012/shader-llm-wiki/blob/main/reports/reflection.md">檢視原始 Markdown 紀錄</a></p></article></main><footer>Shader LLM Wiki · 內容保留在 GitHub Markdown 檔案，這裡提供可直接瀏覽的 HTML 版本。</footer></body></html>
